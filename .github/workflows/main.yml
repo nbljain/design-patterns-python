@@ -4,23 +4,23 @@ on:
   push:
     branches:
       - main
-      - dev  # Add any other branches
+      - dev
   pull_request:
     branches:
       - main
 
 jobs:
   test:
-    runs-on: ubuntu-latest  # Use latest Ubuntu runner
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3  # Fetch repo code
+        uses: actions/checkout@v3
 
       - name: Set Up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11.5'  # Match your project's Python version
+          python-version: '3.10'
 
       - name: Install Poetry
         run: |
@@ -28,7 +28,10 @@ jobs:
           pip install poetry
 
       - name: Install Dependencies with Poetry
-        run: poetry install --no-interaction --no-root  # Installs all dependencies
+        run: poetry install --no-interaction --no-root  
+
+      - name: Debug Test Discovery  # ✅ Debug step to print detected tests
+        run: poetry run python -m unittest discover -s tests -p "test_*.py" -v  
 
       - name: Run Unit Tests
-        run: poetry run python -m unittest discover -s tests -p "tests/test_*.py"
+        run: poetry run python -m unittest discover -s tests -p "test_*.py"
