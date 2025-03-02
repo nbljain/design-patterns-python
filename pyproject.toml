@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "design-patterns-python"
+version = "0.1.0"
+description = "Python design patterns with examples"
+authors = ["nbljain <nitinbljain@outlook.com>"]
+readme = "README.md"
+
+packages = [
+    {include = "builder_pattern"},
+]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
