@@ -37,7 +37,7 @@ jobs:
         run: poetry run python -m unittest discover -p "test_*.py" -v  
 
       - name: Run Unit Tests
-        run: poetry run coverage -m unittest discover -p "test_*.py" -v
+        run: poetry run coverage run -m unittest discover -p "test_*.py" -v
 
       - name: Generate Coverage Report
         run: poetry run coverage report -m
